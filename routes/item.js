@@ -6,7 +6,7 @@ const controller = require('../controllers/ItemController');
 router.get('/items', async (req, res) => {
     await controller.getItems(req, res);
 })
-.get('/item/:id', async (req, res) => {
+.get('/items/:id', async (req, res) => {
     await controller.getItem(req, res);
 })
 .post('/items', async (req, res) => {
