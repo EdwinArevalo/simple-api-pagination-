@@ -4,7 +4,16 @@ module.exports = {
 
     getItems: async (req, res) => {
         try {
-            const items = await Item.find({}).sort({createdAt: 'desc'});
+            //http://localhost:3000/api/items?limit=6&page=5
+            const options = {
+                limit: parseInt(req.query.limit, 10) || 5,
+                page : parseInt(req.query.page, 10) || 1,
+                sort: {
+                    createdAt: 'desc'
+                }
+            }
+            //const items = await Item.find({}).sort({createdAt: 'desc'});
+            const items = await Item.paginate({},options);
             res.json(items);
         } catch(err) {
             console.error(err);
